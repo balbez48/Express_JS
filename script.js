@@ -36,7 +36,14 @@ const getAllServicePrices = function () {
         } else if (i === 1) {
             service2 = prompt("Какой дополнительный тип услуг нужен?");
         }
-        sum += +prompt("Сколько это будет стоить?");
+
+        let ask;
+
+        do {
+            ask = prompt("Сколько это будет стоить?");
+        } while (!isNumber(ask));
+
+        sum += Number(ask);
     }
 
     return sum;
