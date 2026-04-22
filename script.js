@@ -37,7 +37,7 @@ const showTypeOf = function (obj) {
 const getRollbackMessage = function (price) {
     if (price > 30_000) {
         return "Даем скидку в 10%";
-    } else if (price > 15_000 && price < 30_000) {
+    } else if (price >= 15_000 && price < 30_000) {
         return "Даем скидку в 5%";
     } else if (price > 0 && price < 15_000) {
         return "Скидка не предусмотрена";
@@ -59,4 +59,4 @@ showTypeOf(adaptive);
 console.log(`Стоимость верстки экранов ${screenPrice} долларов`);
 console.log(`Стоимость разработки сайта ${fullPrice} долларов`);
 console.log(screens.toLowerCase().split(', '));
-console.log(`Процент отката посреднику за работу: ${servicePercentPrice}`)
+console.log(`Процент отката посреднику за работу: ${price * (rollback / 100)}`)
