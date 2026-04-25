@@ -49,16 +49,17 @@ const appData = {
                 price = prompt("Сколько это будет стоить?");
             } while (!appData.isNumber(price));
 
-            appData.services[name] = +price;
+            appData.services[`${name}${i}`] = +price;
         }
 
         appData.adaptive = confirm("Нужен ли адаптив на сайте?");
     },
 
     addPrices: function () {
-        for (let screen of appData.screens) {
-            appData.screenPrice += +screen.price;
-        }
+
+        appData.screenPrice = appData.screens.reduce((sum, item) => {
+            return sum + +item.price
+        }, 0)
 
         for (let key in appData.services) {
             appData.allServicePrices += appData.services[key];
@@ -100,6 +101,7 @@ const appData = {
     logger: function () {
 
         console.log(appData.screens)
+        console.log(appData.services)
         // console.log(appData.getRollbackMessage(appData.fullPrice));
         // console.log(appData.allServicePrices, 'Цена за доп услуги')
         console.log(`Стоимость верстки экранов ${appData.screenPrice} долларов`);
