@@ -13,6 +13,15 @@ const appData = {
     service2: '',
 
     start: function () {
+        appData.asking();
+        appData.allServicePrices = appData.getAllServicePrices();
+        appData.fullPrice = appData.getFullPrice(appData.screenPrice, appData.allServicePrices);
+        appData.title = appData.getTitle(appData.title);
+        appData.servicePercentPrice = appData.getServicePercentPrices(appData.fullPrice, appData.rollback);
+        appData.logger();
+    },
+
+    asking: function () {
         appData.title = prompt("Как называется ваш проект?", "Калькулятор верстки");
         appData.screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
 
@@ -21,7 +30,6 @@ const appData = {
         } while (!appData.isNumber(appData.screenPrice));
 
         appData.adaptive = confirm("Нужен ли адаптив на сайте?");
-        appData.logger();
     },
 
     isNumber: function (num) {
@@ -78,10 +86,6 @@ const appData = {
     },
 
     logger: function () {
-        appData.allServicePrices = appData.getAllServicePrices();
-        appData.fullPrice = appData.getFullPrice(appData.screenPrice, appData.allServicePrices);
-        appData.title = appData.getTitle(appData.title);
-        appData.servicePercentPrice = appData.getServicePercentPrices(appData.fullPrice, appData.rollback)
 
         console.log(appData.getRollbackMessage(appData.fullPrice));
         console.log(appData.allServicePrices, 'Цена за доп услуги')
