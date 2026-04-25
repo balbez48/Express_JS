@@ -19,12 +19,10 @@ const body = document.querySelector('.body');
 week.forEach((day, index) => {
     let elem = document.createElement('p');
     if (curDay === index) {
-
-        elem.innerHTML = `${week[index]}`;
+        elem.innerHTML = `<strong>${week[index]}</strong>`;
         body.append(elem)
     } else if (index === 5 || index === 6) {
-
-        elem.innerHTML = `${week[index]}`;
+        elem.innerHTML = `<i>${week[index]}</i>`;
         body.append(elem)
     } else {
         elem.innerHTML = `${week[index]}`;
