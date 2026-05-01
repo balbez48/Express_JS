@@ -32,9 +32,7 @@ const rollbackBlock = document.querySelector('.rollback');
 const rangeTitle = rollbackBlock.querySelector('span');
 const rangeBtn = rollbackBlock.querySelector('input[type=range]');
 
-rangeBtn.addEventListener('input', () => {
-    rangeTitle.textContent = rangeBtn.value + '%'
-})
+
 
 const collectionInputs = document.getElementsByClassName('total-input');
 const arrayInputs = [];
@@ -49,7 +47,7 @@ const appData = {
     screens: [],
     countScreens: 0,
     screenPrice: 0,
-    rollback: 20,
+    rollback: 0,
     fullPrice: 0,
     adaptive: true,
     servicePricesPercent: 0,
@@ -69,6 +67,12 @@ const appData = {
             }
         })
 
+        //Здесь обновляю rollback
+        rangeBtn.addEventListener('input', () => {
+            rangeTitle.textContent = rangeBtn.value + '%';
+            appData.rollback = +rangeBtn.value;
+        })
+
         plusBtn.addEventListener('click', () => {
             appData.addScreenBlock();
         })
@@ -76,7 +80,6 @@ const appData = {
 
     start: function () {
         alert('Рассчет начать!')
-        appData.rollback = +rangeBtn.value;
         appData.addScreens();
         appData.addServices();
         appData.addPrices();
@@ -90,6 +93,7 @@ const appData = {
         arrayInputs[2].value = appData.servicePricesPercent + appData.servicePricesNumber;
         arrayInputs[3].value = appData.fullPrice;
         arrayInputs[4].value = appData.servicePercentPrice;
+        console.log(appData)
     },
 
     //метод проверяет все ли поля заполнены, то есть не являются === ''
